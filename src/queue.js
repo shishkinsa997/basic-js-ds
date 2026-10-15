@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../lib');
+const { NotImplementedError } = require("../lib");
 // const { ListNode } = require('../extensions/list-node.js');
 
 /**
@@ -13,22 +13,38 @@ const { NotImplementedError } = require('../lib');
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 class Queue {
+  constructor() {
+    this.q = null;
+  }
   getUnderlyingList() {
-    // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    return this.q;
   }
 
-  enqueue(/* value */) {
-    // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+  enqueue(v) {
+    if (!this.q) {
+      this.q = this.createNode(v);
+    } else {
+      let curr = this.q;
+      while (curr.next) {
+        console.log(curr);
+
+        curr = curr.next;
+      }
+      curr.next = this.createNode(v);
+    }
   }
 
   dequeue() {
-    // Remove line below and write your code here
-    throw new NotImplementedError('Not implemented');
+    const value = this.q?.value;
+    this.q = this.q?.next;
+    return value;
+  }
+
+  createNode(value) {
+    return { value, next: null };
   }
 }
 
 module.exports = {
-  Queue
+  Queue,
 };
